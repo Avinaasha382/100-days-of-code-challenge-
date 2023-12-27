@@ -50,7 +50,9 @@ else:
   print("You fell into a hole. Game Over.")
 
 
-  # Odd or Even checker:
+#Additional questions:
+  
+ # Odd or Even checker:
 num = int(input())
 
 if num%2==0 :

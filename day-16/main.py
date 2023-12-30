@@ -1,5 +1,5 @@
 from ADT import Stack
-
+# STACK ADT IMPLEMENTATION
 stack=Stack()
 stack.push(1)
 stack.push(4)

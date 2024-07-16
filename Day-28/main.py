@@ -10,10 +10,15 @@ SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 1
 timer = None
+t1 = None
+t2 = None
+
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
     global reps
+    global t1
+    global t2
     marks = ""
     for _ in range((reps-1)//2):
         marks+="✔"
@@ -22,13 +27,13 @@ def start_timer():
         title_label.config(text = "Work",fg = GREEN)
         counter(30)
         reps+=1
-        window.after(30*1000 + 1000,start_timer)
+        t1 = window.after(30*1000 + 1000,start_timer)
     else:
         if reps<8:
             title_label.config(text = "Break",fg = RED)
             counter(20)
             reps+=1
-            window.after(20*1000 + 1000,start_timer)
+            t2 = window.after(20*1000 + 1000,start_timer)
         else:
             reps = 1
             title_label.config(text = "Break",fg = PINK)
@@ -50,18 +55,23 @@ def seconds_to_minutes(seconds):
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 
 def counter(count):
-    global timer
+    global timer,t1,t2
     if count<0:
         return
    # print(count)
     canvas.itemconfig(canvas_text,text = seconds_to_minutes(count))
-    timer = window.after(1000,counter,count-1)
+    if not t1 or not t2:
+        t1 = t2 = timer = window.after(1000,counter,count-1)
+    else:
+        timer = window.after(1000,counter,count-1)
 
 # ---------------------------- TIMER RESET ------------------------------- # 
 def timer_reset():
     global reps
     reps = 1
     window.after_cancel(timer)
+    window.after_cancel(t1)
+    window.after_cancel(t2)
     title_label.config(text = "Timer")
     canvas.itemconfig(canvas_text, text = "00:00")
     tick.config(text = "")

@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 # Day 5: Python Loops:
 
@@ -54,13 +55,49 @@ def save_password():
     print(response)
 
     if response == True:
-        with open("data.txt",mode = "a") as fp:
-            fp.write(f"{website}||{email}||{password}")
-            fp.write("\n")
-            pyperclip.copy(password)
+        new_data = {
+           website:{
+               "email":email,
+               "password":password
+           } 
+        }
+        try:
+            with open("data.json",mode = "r") as fp:
+                data = json.load(fp)
+                data.update(new_data)
+                pyperclip.copy(password)
+        except FileNotFoundError:
+            with open("data.json",mode = "w") as fp:
+                json.dump(new_data,fp)
+        else:
+            with open("data.json",mode = "w") as fp:
+                json.dump(data,fp)
         
         website_entry.delete(0,END)  
         password_entry.delete(0,END)
+
+def find_password():
+    website = website_entry.get()
+    if len(website) == 0:
+        messagebox.showerror(title = "Missing website field",message="Please enter a valid website")
+        return
+    
+    try:
+        with open("data.json",mode = "r") as fp:
+            data = json.load(fp)
+    except FileNotFoundError:
+        messagebox.showerror(title = "File not found",message = "No Data File Found")
+    else:
+        try:
+            website_data = data[website]
+        except KeyError:
+            messagebox.showerror(title = "Data not found in file", message = "No details for the website exists")
+        else:
+            messagebox.showinfo(title = "Website details",message = f"email: {website_data['email']} \n password:{website_data['password']}")
+            
+
+
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -71,7 +108,7 @@ window.config(padx = 50, pady = 50)
 canvas = Canvas(width = 200, height = 200)
 password_image = PhotoImage(file = "./logo.png")
 canvas.create_image(100,100,image = password_image)
-canvas.grid(row =0, column=1)
+canvas.grid(row = 0, column=1)
 
 website_label = Label(text = "Website:")
 website_label.grid(row = 1,column = 0)
@@ -98,6 +135,9 @@ generate_password_button.grid(row = 3,column = 2)
 
 add_password_button = Button(text = "Add",width=36 ,command = save_password)
 add_password_button.grid(row = 4, column = 1,columnspan=2)
+
+search_button = Button(text = "Search",command = find_password)
+search_button.grid(row = 1, column = 2)
 
 
 window.mainloop()

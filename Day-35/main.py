@@ -26,7 +26,7 @@ print(message.sid)
 weather_params = {
     "lat":13.082680,
     "lon":80.270721,
-    "appid":"03ecd436cad8e4aef242bd0342a3ff36",
+    "appid":os.getenv("appid"),
     "cnt":1
 }
 

@@ -21,6 +21,19 @@ class DataManager:
         self.destination_data = response.json()["prices"]
         return self.destination_data
     
+    def get_email(self):
+        response = requests.get(url="https://api.sheety.co/b3ec3936a2c08bb8fe692a3c5887240f/flightDealsFinder/users",headers=self.headers)
+        response.raise_for_status()
+        data = response.json()["users"]
+        email_data = []
+
+        for email in data:
+            email_data.append(email["yourEmail"])
+        
+        return email_data
+
+    
+    
     def update_flight_data(self):
         for data in self.destination_data:
             data_params = {

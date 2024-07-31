@@ -1,0 +1,25 @@
+.nameCard {
+    width: 350px;
+    height:400px;
+    background-color: rgba(0, 0, 255, 0.2); /* Blue background with 20% opacity */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+body {
+    background-image: url("https://img.freepik.com/free-vector/hand-drawn-minimal-background_23-2149007819.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:1000px;
+}
+
+#logo img {
+    width:75px;
+    height:75px;
+    margin-left: 20px;
+}

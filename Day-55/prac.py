@@ -16,7 +16,7 @@ def make_text_underline(function):
 @make_bold
 @make_text_underline
 def bye():
-    return "Bye"
+    return "Heyy..!"
 
 
 if __name__ == "__main__":

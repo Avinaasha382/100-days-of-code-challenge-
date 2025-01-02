@@ -1,35 +1,36 @@
-# from flask import Flask 
+from flask import Flask 
+import time
 
-# app = Flask(__name__)
+app = Flask(__name__)
 
-# @app.route("/")
-# def greet():
-#     return "Hi"
+@app.route("/")
+def greet():
+    return "Hi"
 
-# if __name__ == "__main__":
-#     app.run()
-
-
+if __name__ == "__main__":
+    app.run()
 
 
-# def delay_decorator(function):
-#     def wrapper_function():
-#         time.sleep(2)
-#         function()
-#     return wrapper_function
 
-# @delay_decorator
-# def say_hello():
-#     print("hello")
 
-# def say_bye():
-#     print("bye")
+def delay_decorator(function):
+    def wrapper_function():
+        time.sleep(2)
+        function()
+    return wrapper_function
 
-# def greet():
-#     print("Hi Welcome to Chennai!!")
+@delay_decorator
+def say_hello():
+    print("hello")
 
-# say_hello()
+def say_bye():
+    print("bye")
 
-# say_bye()
+def greet():
+    print("Hi Welcome to Chennai!!")
+
+say_hello()
+
+say_bye()
 
 

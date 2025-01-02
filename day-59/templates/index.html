@@ -2,29 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper container">
     <div class="top">
-        <div class="title"><h1>My Blog</h1></div>
+        <div class="title text-center">
+            <h1>My Blg</h1>
+        </div>
     </div>
 
-    {% for post in data %}
-        <div class="content">
+    <div class="row">
+        {% for post in data %}
+        <div class="col-md-4">
             <div class="card">
-                <h2>{{post.title}}</h2>
-                <p class="text">{{post.subtitle}} </p>
-                <a href="{{url_for('get_post',id=post.id)}}">Read</a>
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text">{{ post.subtitle }}</p>
+                    <a href="{{ url_for('get_post', id=post.id) }}" class="btn btn-primary">Read</a>
+                </div>
             </div>
         </div>
-    {% endfor %}
-    
+        {% endfor %}
+    </div>
 </div>
+
 </body>
-<footer>
+<footer class="text-center mt-4">
     <p>Made with ♥️ in London.</p>
 </footer>
 </html>

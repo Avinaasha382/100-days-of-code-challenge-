@@ -1,9 +1,18 @@
-# generate a band name:
+import random 
 
-# On day-1 I learnt what are the basic data types in Python, using print statements,input statements and string concatenation
+m = random.randint(100,120)
 
-print("Welcome to the Band Name Generator.")
-street = input("What's the name of the city you grew up in?\n")
-pet = input("What's your pet's name?\n")
-print("Your band name could be " + street + " " + pet)
+
+
+print(m)
+
+s = set()
+
+for _ in range(m):
+    s.add((random.randint(1,20),random.randint(1,20)))
+
+print(len(s))
+
+for ele in  s:
+    print(ele[0],ele[1])
 

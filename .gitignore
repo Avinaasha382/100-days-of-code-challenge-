@@ -2,3 +2,9 @@ studysession
 __pycache__
 .env
 token.txt
+Bookshelf.db
+Bookstore.db
+prac.db
+queries.py 
+new.py 
+Bookshelf

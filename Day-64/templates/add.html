@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Movie{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1 class="heading mb-4">Add a Movie</h1>
+
+    <form method="POST" action="{{ url_for('add_movie') }}" novalidate>
+        {{ form.csrf_token }}
+
+        <!-- Title Field -->
+        <div class="form-group mb-3">
+            {{ form.title.label }}
+            {{ form.title }}
+            {% for error in form.title.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Year Field -->
+        <div class="form-group mb-3">
+            {{ form.year.label }}
+            {{ form.year }}
+            {% for error in form.year.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Description Field -->
+        <div class="form-group mb-3">
+            {{ form.description.label }}
+            {{ form.description }}
+            {% for error in form.description.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Rating Field -->
+        <div class="form-group mb-3">
+            {{ form.rating.label }}
+            {{ form.rating }}
+            {% for error in form.rating.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Ranking Field -->
+        <div class="form-group mb-3">
+            {{ form.ranking.label }}
+            {{ form.ranking }}
+            {% for error in form.ranking.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Review Field -->
+        <div class="form-group mb-3">
+            {{ form.review.label }}
+            {{ form.review }}
+            {% for error in form.review.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Image URL Field -->
+        <div class="form-group mb-3">
+            {{ form.img_url.label }}
+            {{ form.img_url }}
+            {% for error in form.img_url.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Add Movie</button>
+        <div>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Back to Index Page</a>
+    </div>
+    </form>
+
+    
+</div>
+{% endblock %}
